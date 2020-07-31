@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MovieDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:fitsSystemWindows="true">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="340dp"
+            android:elevation="0dp"
+            app:layout_scrollFlags="scroll|snapMargins|enterAlways">
+
+            <include
+                layout="@layout/backdrop_movie_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"/>
+
+            <include layout="@layout/appbar_movie_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+    android:background="@color/colorPrimaryDark"
+    android:paddingBottom="@dimen/margin_medium_2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_medium_2"
+            android:text="@string/storyline"
+            android:textColor="@android:color/secondary_text_dark"/>
+
+        <TextView
+            android:id="@+id/tvStoryLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textAlignment="viewStart"
+            android:paddingHorizontal="@dimen/margin_medium_2"
+            android:paddingBottom="@dimen/margin_medium_2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:orientation="horizontal">
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_medium_2"
+                android:textColor="@android:color/white"
+                app:chipIcon="@drawable/ic_play_circle"
+                app:chipIconTint="#681E1E1E"
+                app:chipBackgroundColor="@color/colorAccent"
+                android:text="@string/play_trailer"/>
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_medium_2"
+                android:textColor="@android:color/white"
+                app:chipIcon="@drawable/ic_star"
+                app:chipIconTint="@color/colorAccent"
+                app:chipBackgroundColor="@color/colorPrimaryDark"
+                app:chipStrokeColor="@android:color/white"
+                app:chipStrokeWidth="1dp"
+                android:text="@string/rate_movie"/>
+        </LinearLayout>
+
+        <include layout="@layout/layout_list_actors"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_film"
+            android:textColor="@android:color/secondary_text_dark"
+            android:padding="@dimen/margin_medium_2"/>
+
+        <include
+            android:id="@+id/viewPodOriginalTitle"
+            layout="@layout/viewpod_horizontal_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_2"/>
+
+        <include
+            android:id="@+id/viewPodType"
+            layout="@layout/viewpod_horizontal_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_2"/>
+
+        <include
+            android:id="@+id/viewPodProduction"
+            layout="@layout/viewpod_horizontal_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_2"/>
+
+        <include
+            android:id="@+id/viewPodPremiere"
+            layout="@layout/viewpod_horizontal_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_2"/>
+
+        <include
+            android:id="@+id/viewPodDescription"
+            layout="@layout/viewpod_horizontal_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_medium_2"
+            android:layout_marginBottom="@dimen/margin_medium_2"/>
+
+        <include layout="@layout/layout_list_creators"/>
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

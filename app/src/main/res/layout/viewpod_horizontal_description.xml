@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.ktmmoe.themovieapp.views.viewpods.HorizontalDescriptionViewPod xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1.5">
+    <TextView
+        android:id="@+id/tvViewPodTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:padding="@dimen/margin_medium"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/secondary_text_dark"/>
+    <TextView
+        android:id="@+id/tvViewPodDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="textStart"
+        android:padding="@dimen/margin_medium"
+        android:textColor="@android:color/white"
+        android:maxLines="5"
+        android:lineSpacingMultiplier="1.4"
+        android:ellipsize="end"/>
+</com.example.ktmmoe.themovieapp.views.viewpods.HorizontalDescriptionViewPod>

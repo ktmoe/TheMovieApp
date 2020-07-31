@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/margin_medium"
+    android:layout_margin="@dimen/margin_medium_2">
+
+    <TextView
+        android:id="@+id/tvCheckShowTimes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_regular_2x"
+        android:text="@string/check_movie_nshowtimes"
+        android:padding="@dimen/margin_medium_2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:text="@string/u_see_more_u"
+        android:padding="@dimen/margin_medium_2"
+        android:layout_below="@id/tvCheckShowTimes"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:padding="@dimen/margin_medium"
+            app:srcCompat="@drawable/ic_myanmar_map"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/ic_place"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+</RelativeLayout>

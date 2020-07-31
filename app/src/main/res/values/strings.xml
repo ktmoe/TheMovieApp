@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">The Movie App</string>
+    <string name="discover">Discover</string>
+    <string name="check_movie_nshowtimes">Check Movie\nShow times</string>
+    <string name="u_see_more_u"><u>See More</u></string>
+    <string name="showcases">SHOWCASES</string>
+    <string name="u_more_showcases_u"><u>MORE SHOWCASES</u></string>
+    <string name="best_actors">BEST ACTORS</string>
+    <string name="u_more_actors_u"><u>MORE ACTORS</u></string>
+    <string name="best_popular_films_and_series">BEST POPULAR FILMS AND SERIES</string>
+    <string name="storyline">StoryLine</string>
+    <string name="play_trailer">Play Trailer</string>
+    <string name="rate_movie">Rate Movie</string>
+    <string name="actors">Actors</string>
+    <string name="creators">Creators</string>
+    <string name="more_creators"><u>More Creators</u></string>
+    <string name="about_film">About Film</string>
+</resources>
