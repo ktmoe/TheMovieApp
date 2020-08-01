@@ -16,7 +16,8 @@ data class CastVO(
     @SerializedName("id") val id: Int = 0,
     @SerializedName("name") val name: String = "",
     @SerializedName("order") val order: Int = 0,
-    @SerializedName("profile_path") val profilePath: String? = ""
+    @SerializedName("profile_path") val profilePath: String? = "",
+    var goodActor: Boolean = false
 ) {
     var favourite: Boolean = false
     fun favouriteDrawable(): Int = if (favourite) R.drawable.ic_favorite else R.drawable.ic_favorite_border

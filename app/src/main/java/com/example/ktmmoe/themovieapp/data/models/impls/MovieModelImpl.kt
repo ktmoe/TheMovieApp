@@ -5,10 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ktmmoe.themovieapp.data.models.BaseModel
 import com.example.ktmmoe.themovieapp.data.models.MovieModel
-import com.example.ktmmoe.themovieapp.data.vos.CastVO
-import com.example.ktmmoe.themovieapp.data.vos.GenreVO
-import com.example.ktmmoe.themovieapp.data.vos.MovieDetailVO
-import com.example.ktmmoe.themovieapp.data.vos.MovieVO
+import com.example.ktmmoe.themovieapp.data.vos.*
 import com.example.ktmmoe.themovieapp.network.responses.CastsByMovieResponse
 import com.example.ktmmoe.themovieapp.network.responses.GenresResponse
 import com.example.ktmmoe.themovieapp.network.responses.PopularMoviesResponse
@@ -24,6 +21,12 @@ import io.reactivex.schedulers.Schedulers
 object MovieModelImpl: MovieModel, BaseModel() {
     override val movieDetail: MutableLiveData<MovieDetailVO> = MutableLiveData()
     override val moviesByGenre: MutableLiveData<List<MovieVO>> = MutableLiveData(listOf())
+    override val trailerByMovie: MutableLiveData<TrailerVO> = MutableLiveData(TrailerVO())
+
+    override fun getSliderMovies(onError: (String) -> Unit): LiveData<List<MovieVO>> {
+        val theFive = mTheMovieDB.movieDao().getPopularMovie().value?.subList(0, 4)
+        return MutableLiveData(theFive)
+    }
 
     override fun getPopularMovies(onError: (String) -> Unit): LiveData<List<MovieVO>> {
         return mTheMovieDB.movieDao().getPopularMovie()
@@ -51,11 +54,24 @@ object MovieModelImpl: MovieModel, BaseModel() {
 
     @SuppressLint("CheckResult")
     override fun getMoviesByGenre(genreId: Int, onError: (String) -> Unit) {
+        moviesByGenre.postValue(emptyList())
         mTheMovieApi.getMoviesByGenre(genreId = genreId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 moviesByGenre.postValue(it.results)
+            },{
+                onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
+            })
+    }
+
+    @SuppressLint("CheckResult")
+    override fun getTrailersByMovie(movieId: Int, onError: (String) -> Unit) {
+        mTheMovieApi.getTrailersByMovie(movieId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                trailerByMovie.postValue(it.results.first())
             },{
                 onError(it.localizedMessage ?: EM_NO_INTERNET_CONNECTION)
             })
@@ -76,13 +92,13 @@ object MovieModelImpl: MovieModel, BaseModel() {
             Function3<PopularMoviesResponse, GenresResponse, CastsByMovieResponse, Unit>{t1, t2, t3 ->
                 popularMovies = t1.results.map { it.copy(popular = true) }
                 genres = t2.genres
-                bestActors = t3.cast
+                bestActors = t3.cast.map { it.copy(goodActor = true) }
             }
         ).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 val g = mTheMovieDB.genreDao().insertGenres(genres)
-                val a = mTheMovieDB.castDao().insertBestActors(bestActors)
+                val a = mTheMovieDB.castDao().insertActors(bestActors)
 
                 mTheMovieDB.movieDao().insertMovies(popularMovies)
             },{

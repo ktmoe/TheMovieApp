@@ -10,12 +10,10 @@ import com.example.ktmmoe.themovieapp.views.viewholders.CastViewHolder
 /**
  * Created by ktmmoe on 29, July, 2020
  **/
-class CastRecyclerAdapter(delegate: CastDelegate): BaseRecyclerAdapter<CastViewHolder, CastVO>() {
-
-    val mDelegate = delegate
+class CastRecyclerAdapter(private val delegate: CastDelegate): BaseRecyclerAdapter<CastViewHolder, CastVO>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_item_person_list, parent, false)
-        return CastViewHolder(view, mDelegate)
+        return CastViewHolder(view, delegate)
     }
 }

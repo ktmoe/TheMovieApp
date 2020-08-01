@@ -9,132 +9,163 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        app:elevation="0dp">
+
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="340dp"
             android:elevation="0dp"
-            app:layout_scrollFlags="scroll|snapMargins|enterAlways">
+            app:contentScrim="@color/colorPrimaryDark"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <include
                 layout="@layout/backdrop_movie_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"/>
+                app:layout_collapseMode="parallax" />
 
-            <include layout="@layout/appbar_movie_detail"
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"/>
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    android:padding="@dimen/margin_medium_2">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/navigatorUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/gray_circle"
+                        app:srcCompat="@drawable/ic_left" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        app:srcCompat="@drawable/ic_search" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
-<androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-    android:background="@color/colorPrimaryDark"
-    android:paddingBottom="@dimen/margin_medium_2">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/margin_medium_2"
-            android:text="@string/storyline"
-            android:textColor="@android:color/secondary_text_dark"/>
-
-        <TextView
-            android:id="@+id/tvStoryLine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textAlignment="viewStart"
-            android:paddingHorizontal="@dimen/margin_medium_2"
-            android:paddingBottom="@dimen/margin_medium_2"/>
+        android:background="@color/colorPrimaryDark"
+        android:paddingBottom="@dimen/margin_medium_2"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium_2"
-            android:orientation="horizontal">
-            <com.google.android.material.chip.Chip
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_medium_2"
-                android:textColor="@android:color/white"
-                app:chipIcon="@drawable/ic_play_circle"
-                app:chipIconTint="#681E1E1E"
-                app:chipBackgroundColor="@color/colorAccent"
-                android:text="@string/play_trailer"/>
-            <com.google.android.material.chip.Chip
+                android:padding="@dimen/margin_medium_2"
+                android:text="@string/storyline"
+                android:textColor="@android:color/secondary_text_dark" />
+
+            <TextView
+                android:id="@+id/tvStoryLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/margin_medium_2"
+                android:paddingBottom="@dimen/margin_medium_2"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_medium_2"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:text="@string/play_trailer"
+                    android:textColor="@android:color/white"
+                    app:chipBackgroundColor="@color/colorAccent"
+                    app:chipIcon="@drawable/ic_play_circle"
+                    app:chipIconTint="#681E1E1E" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_medium_2"
+                    android:text="@string/rate_movie"
+                    android:textColor="@android:color/white"
+                    app:chipBackgroundColor="@color/colorPrimaryDark"
+                    app:chipIcon="@drawable/ic_star"
+                    app:chipIconTint="@color/colorAccent"
+                    app:chipStrokeColor="@android:color/white"
+                    app:chipStrokeWidth="1dp" />
+            </LinearLayout>
+
+            <include layout="@layout/layout_list_actors" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/margin_medium_2"
+                android:text="@string/about_film"
+                android:textColor="@android:color/secondary_text_dark" />
+
+            <include
+                android:id="@+id/viewPodOriginalTitle"
+                layout="@layout/viewpod_horizontal_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_medium_2"
-                android:textColor="@android:color/white"
-                app:chipIcon="@drawable/ic_star"
-                app:chipIconTint="@color/colorAccent"
-                app:chipBackgroundColor="@color/colorPrimaryDark"
-                app:chipStrokeColor="@android:color/white"
-                app:chipStrokeWidth="1dp"
-                android:text="@string/rate_movie"/>
+                android:layout_marginBottom="@dimen/margin_medium_2" />
+
+            <include
+                android:id="@+id/viewPodType"
+                layout="@layout/viewpod_horizontal_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_medium_2"
+                android:layout_marginBottom="@dimen/margin_medium_2" />
+
+            <include
+                android:id="@+id/viewPodProduction"
+                layout="@layout/viewpod_horizontal_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_medium_2"
+                android:layout_marginBottom="@dimen/margin_medium_2" />
+
+            <include
+                android:id="@+id/viewPodPremiere"
+                layout="@layout/viewpod_horizontal_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_medium_2"
+                android:layout_marginBottom="@dimen/margin_medium_2" />
+
+            <include
+                android:id="@+id/viewPodDescription"
+                layout="@layout/viewpod_horizontal_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_medium_2"
+                android:layout_marginBottom="@dimen/margin_medium_2" />
+
+            <include layout="@layout/layout_list_creators" />
         </LinearLayout>
 
-        <include layout="@layout/layout_list_actors"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/about_film"
-            android:textColor="@android:color/secondary_text_dark"
-            android:padding="@dimen/margin_medium_2"/>
-
-        <include
-            android:id="@+id/viewPodOriginalTitle"
-            layout="@layout/viewpod_horizontal_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"/>
-
-        <include
-            android:id="@+id/viewPodType"
-            layout="@layout/viewpod_horizontal_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"/>
-
-        <include
-            android:id="@+id/viewPodProduction"
-            layout="@layout/viewpod_horizontal_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"/>
-
-        <include
-            android:id="@+id/viewPodPremiere"
-            layout="@layout/viewpod_horizontal_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"/>
-
-        <include
-            android:id="@+id/viewPodDescription"
-            layout="@layout/viewpod_horizontal_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_medium_2"
-            android:layout_marginBottom="@dimen/margin_medium_2"/>
-
-        <include layout="@layout/layout_list_creators"/>
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

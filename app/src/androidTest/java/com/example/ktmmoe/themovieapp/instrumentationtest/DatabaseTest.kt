@@ -49,7 +49,7 @@ class DatabaseTest {
         val mockGenres = listOf(GenreVO(id = 1), GenreVO(id = 2), GenreVO(id = 3))
 
         movieDao.insertMovies(mockMovies)
-        castDao.insertBestActors(mockCasts)
+        castDao.insertActors(mockCasts)
         genreDao.insertGenres(mockGenres)
 
         assert(movieDao.getMovies().value?.count() == mockMovies.count())

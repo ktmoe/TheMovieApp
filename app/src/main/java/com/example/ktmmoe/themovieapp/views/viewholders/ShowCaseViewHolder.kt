@@ -17,7 +17,7 @@ class ShowCaseViewHolder(itemView: View): BaseViewHolder<String>(itemView) {
         mData = data
         mImageView = itemView.findViewById(R.id.ivMoviePoster)
         Glide.with(itemView.context)
-            .load("$BASE_IMAGE_URL/c18HVnKTybcAUYVQd8rOcdbqwY.jpg")
+            .load("$BASE_IMAGE_URL/$data")
             .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_background).centerCrop())
             .into(mImageView)
     }

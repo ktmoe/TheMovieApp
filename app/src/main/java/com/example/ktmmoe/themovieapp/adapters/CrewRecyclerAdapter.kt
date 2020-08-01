@@ -13,12 +13,10 @@ import com.example.ktmmoe.themovieapp.views.viewholders.CrewViewHolder
 /**
  * Created by ktmmoe on 29, July, 2020
  **/
-class CrewRecyclerAdapter(delegate: CrewDelegate): BaseRecyclerAdapter<CrewViewHolder, CrewVO>() {
-
-    val mDelegate = delegate
+class CrewRecyclerAdapter(private val delegate: CrewDelegate): BaseRecyclerAdapter<CrewViewHolder, CrewVO>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CrewViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_item_person_list, parent, false)
-        return CrewViewHolder(view, mDelegate)
+        return CrewViewHolder(view, delegate)
     }
 }

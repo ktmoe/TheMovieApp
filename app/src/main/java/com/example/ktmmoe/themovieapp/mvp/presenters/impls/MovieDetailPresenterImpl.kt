@@ -6,6 +6,7 @@ import com.example.ktmmoe.themovieapp.data.models.MovieModel
 import com.example.ktmmoe.themovieapp.data.models.impls.MovieModelImpl
 import com.example.ktmmoe.themovieapp.mvp.presenters.AbstractBasePresenter
 import com.example.ktmmoe.themovieapp.mvp.presenters.MovieDetailPresenter
+import com.example.ktmmoe.themovieapp.mvp.views.MainView
 import com.example.ktmmoe.themovieapp.mvp.views.MovieDetailView
 
 /**
@@ -19,6 +20,7 @@ class MovieDetailPresenterImpl: MovieDetailPresenter, AbstractBasePresenter<Movi
         setupObservations(lifecycleOwner)
 
         getMovieDetail(movieId)
+
     }
 
     override fun onMovieFavouriteClicked(id: Int) {
@@ -34,14 +36,21 @@ class MovieDetailPresenterImpl: MovieDetailPresenter, AbstractBasePresenter<Movi
     }
 
     private fun getMovieDetail(movieId: Int) {
+        mView?.showLoading()
         mMovieModel.getMovieDetailById(movieId){
+            mView?.hideLoading()
             mView?.showMessageSnackBar(it)
         }
     }
 
     private fun setupObservations(lifecycleOwner: LifecycleOwner) {
         mMovieModel.movieDetail.observe(lifecycleOwner, Observer {
-            if (it.id != 0) mView?.displayMovieDetails(it)
+            mView?.hideLoading()
+            if (it.id != 0) {
+                mView?.displayMovieDetails(it)
+                mView?.displayCastsList(it)
+                mView?.displayCrewsList(it)
+            }
         })
     }
 }

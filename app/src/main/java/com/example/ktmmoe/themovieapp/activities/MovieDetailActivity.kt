@@ -2,32 +2,23 @@ package com.example.ktmmoe.themovieapp.activities
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.ktmmoe.themovieapp.R
 import com.example.ktmmoe.themovieapp.adapters.CastRecyclerAdapter
 import com.example.ktmmoe.themovieapp.adapters.CrewRecyclerAdapter
-import com.example.ktmmoe.themovieapp.data.vos.CastVO
-import com.example.ktmmoe.themovieapp.data.vos.CrewVO
 import com.example.ktmmoe.themovieapp.data.vos.MovieDetailVO
 import com.example.ktmmoe.themovieapp.mvp.presenters.MovieDetailPresenter
 import com.example.ktmmoe.themovieapp.mvp.presenters.impls.MovieDetailPresenterImpl
 import com.example.ktmmoe.themovieapp.mvp.views.MovieDetailView
 import com.example.ktmmoe.themovieapp.views.viewpods.HorizontalDescriptionViewPod
 import com.example.ktmmoe.themovieapp.views.viewpods.MovieBackDropInfoViewPod
-import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.activity_movie_detail.*
-import kotlinx.android.synthetic.main.appbar_movie_detail.*
 import kotlinx.android.synthetic.main.backdrop_movie_detail.*
-import kotlinx.android.synthetic.main.backdrop_movie_detail.view.*
 import kotlinx.android.synthetic.main.layout_list_actors.*
 import kotlinx.android.synthetic.main.layout_list_creators.*
-import kotlinx.android.synthetic.main.viewpod_movie_backdrop_info.*
 
 class MovieDetailActivity : BaseActivity(), MovieDetailView {
     private lateinit var mMovieBackDropInfoViewPod: MovieBackDropInfoViewPod
@@ -39,8 +30,6 @@ class MovieDetailActivity : BaseActivity(), MovieDetailView {
     private lateinit var mViewPodProduction: HorizontalDescriptionViewPod
     private lateinit var mViewPodPremiere: HorizontalDescriptionViewPod
     private lateinit var mViewPodDescription: HorizontalDescriptionViewPod
-
-    private lateinit var mMovieDetail: MovieDetailVO
 
     private lateinit var mPresenter: MovieDetailPresenter
 
@@ -83,24 +72,17 @@ class MovieDetailActivity : BaseActivity(), MovieDetailView {
 
     }
 
-    private fun bindData() {
-        mMovieBackDropInfoViewPod.setData(mMovieDetail)
+    override fun displayMovieDetails(movieDetail: MovieDetailVO) {
+        mMovieBackDropInfoViewPod.setData(movieDetail)
         Glide.with(this)
-            .load(mMovieDetail.absoluteBackDropPath())
+            .load(movieDetail.absoluteBackDropPath())
             .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_background).centerCrop())
             .into(ivMovieBackdrop)
-        tvStoryLine.text = mMovieDetail.tagLine
-        displayRecycleViews()
-        displayMovieDescriptions()
+        tvStoryLine.text = movieDetail.tagLine
+        displayMovieDescriptions(movieDetail)
     }
 
-    private fun displayRecycleViews () {
-        mCastRecyclerAdapter.setNewData(mMovieDetail.credits.cast.toMutableList())
-        mCrewRecyclerAdapter.setNewData(mMovieDetail.credits.crew.toMutableList())
-
-    }
-
-    private fun displayMovieDescriptions() {
+    private fun displayMovieDescriptions(mMovieDetail: MovieDetailVO) {
         mViewPodOriginalTitle.titleAndDescription("OriginalTitle", mMovieDetail.originalTitle)
         var type = ""
         mMovieDetail.genres.forEach { type += it.name +"," }
@@ -112,18 +94,12 @@ class MovieDetailActivity : BaseActivity(), MovieDetailView {
         mViewPodDescription.titleAndDescription("Description", mMovieDetail.overview)
     }
 
-    companion object {
-        private const val MOVIE_ID_EXTRA = "movie-id-extra"
-        fun newIntent(context: Context, id: Int) : Intent {
-            val intent =  Intent(context, MovieDetailActivity::class.java)
-            intent.putExtra(MOVIE_ID_EXTRA, id)
-            return intent
-        }
+    override fun displayCastsList(movieDetail: MovieDetailVO) {
+        mCastRecyclerAdapter.setNewData(movieDetail.credits.cast.toMutableList())
     }
 
-    override fun displayMovieDetails(movieDetail: MovieDetailVO) {
-        mMovieDetail = movieDetail
-        bindData()
+    override fun displayCrewsList(movieDetail: MovieDetailVO) {
+        mCrewRecyclerAdapter.setNewData(movieDetail.credits.crew.toMutableList())
     }
 
     override fun showMessageSnackBar(message: String) {
@@ -132,5 +108,14 @@ class MovieDetailActivity : BaseActivity(), MovieDetailView {
 
     private fun setupListeners(){
         navigatorUp.setOnClickListener { onBackPressed() }
+    }
+
+    companion object {
+        private const val MOVIE_ID_EXTRA = "movie-id-extra"
+        fun newIntent(context: Context, id: Int) : Intent {
+            val intent =  Intent(context, MovieDetailActivity::class.java)
+            intent.putExtra(MOVIE_ID_EXTRA, id)
+            return intent
+        }
     }
 }

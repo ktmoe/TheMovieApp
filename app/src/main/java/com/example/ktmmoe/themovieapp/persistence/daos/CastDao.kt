@@ -11,12 +11,15 @@ import com.example.ktmmoe.themovieapp.data.vos.MovieVO
 @Dao
 interface CastDao {
 
-    @Query ("select * from casts")
-    fun getBestActors() : LiveData<List<CastVO>>
+    @Query ("select * from casts where goodActor = :good")
+    fun getBestActors(good: Boolean = true) : LiveData<List<CastVO>>
+
+    @Query("update casts set favourite = :favourite where id = :id")
+    fun favouriteActor(id: Int, favourite: Boolean = true)
 
     @Query ("delete from casts")
     fun deleteAll()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertBestActors (casts: List<CastVO>): List<Long>
+    fun insertActors (casts: List<CastVO>): List<Long>
 }

@@ -10,7 +10,6 @@ import com.example.ktmmoe.themovieapp.data.vos.MovieVO
 import com.example.ktmmoe.themovieapp.mvp.presenters.MainPresenter
 import com.example.ktmmoe.themovieapp.mvp.presenters.impls.MainPresenterImpl
 import com.example.ktmmoe.themovieapp.mvp.views.MainView
-import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.layout_list_best_actors.*
 import kotlinx.android.synthetic.main.layout_list_popular_movies.*
 import kotlinx.android.synthetic.main.layout_list_showcases.*
@@ -43,8 +42,7 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     private fun setupSliderView() {
-        mSliderAdapter = SliderAdapter(this)
-        mSliderAdapter.addUrlList(dummyImageUrls)
+        mSliderAdapter = SliderAdapter(this, mPresenter)
         sliderView.sliderAdapter = mSliderAdapter
     }
 
@@ -53,7 +51,7 @@ class MainActivity : BaseActivity(), MainView {
         mShowCaseAdapter = ShowCaseRecyclerAdapter()
         mBestActorAdapter = CastRecyclerAdapter(mPresenter)
 
-        mShowCaseAdapter.setNewData(mutableListOf("", "", ""))
+        mShowCaseAdapter.setNewData(dummyImageUrls.toMutableList())
 
         rvPopularMovies.adapter = mPopularMovieAdapter
         rvShowCases.adapter = mShowCaseAdapter
@@ -61,24 +59,14 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     private fun setupPagerWithTab(genres: List<GenreVO>) {
-        tabLayout.removeAllTabs()
-        for (i in genres.indices) {
-            tabLayout.addTab(tabLayout.newTab().setText(genres[i].name))
-        }
         val viewPagerAdapter = MovieByGenrePagerAdapter(supportFragmentManager, genres)
         viewpager.adapter = viewPagerAdapter
         viewpager.currentItem = 0
+        tabLayout.setupWithViewPager(viewpager)
+    }
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                viewpager.currentItem = tab!!.position
-            }
-
-        })
+    override fun displayTop5(list: MutableList<MovieVO>) {
+        mSliderAdapter.addMovieList(list)
     }
 
     override fun displayMoviesList(list: MutableList<MovieVO>) {
@@ -97,8 +85,12 @@ class MainActivity : BaseActivity(), MainView {
         startActivity(MovieDetailActivity.newIntent(this, movieId))
     }
 
+    override fun navigateToTrailerActivity(movieId: Int) {
+        startActivity(TrailerActivity.newIntent(this, movieId))
+    }
+
     override fun showMessageSnackBar(message: String) {
-        showMessageSnackBar(message)
+        showSnackBar(message)
     }
 
 }

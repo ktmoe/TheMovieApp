@@ -33,11 +33,18 @@ class MainPresenterImpl: MainPresenter, AbstractBasePresenter<MainView>() {
         mView?.showMessageSnackBar("Favourite on Crew is clicked")
     }
 
+    override fun onTapMovieSlider(movieId: Int) {
+        mView?.navigateToTrailerActivity(movieId)
+    }
+
     private fun loadPrerequisiteData(lifecycleOwner: LifecycleOwner) {
+        mView?.showLoading()
         mMovieModel.getPopularMovies {
             mView?.showMessageSnackBar(it)
         }.observe(lifecycleOwner, Observer {
             mView?.displayMoviesList(it.toMutableList())
+            if (it.count() > 5)
+                mView?.displayTop5(it.subList(0, 4).toMutableList())
         })
         mMovieModel.getGenres { mView?.showMessageSnackBar(it) }
             .observe(lifecycleOwner, Observer {
@@ -47,5 +54,6 @@ class MainPresenterImpl: MainPresenter, AbstractBasePresenter<MainView>() {
             .observe(lifecycleOwner, Observer {
                 mView?.displayBestActorsList(it.toMutableList())
             })
+        mView?.hideLoading()
     }
 }

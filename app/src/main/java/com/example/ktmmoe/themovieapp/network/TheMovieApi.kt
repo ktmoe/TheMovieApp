@@ -1,10 +1,7 @@
 package com.example.ktmmoe.themovieapp.network
 
 import com.example.ktmmoe.themovieapp.data.vos.MovieDetailVO
-import com.example.ktmmoe.themovieapp.network.responses.CastsByMovieResponse
-import com.example.ktmmoe.themovieapp.network.responses.GenresResponse
-import com.example.ktmmoe.themovieapp.network.responses.MoviesByGenreResponse
-import com.example.ktmmoe.themovieapp.network.responses.PopularMoviesResponse
+import com.example.ktmmoe.themovieapp.network.responses.*
 import com.example.ktmmoe.themovieapp.utils.*
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -37,5 +34,11 @@ interface TheMovieApi {
 
     @GET(MOVIE_CASTS)
     fun getBestActors(@Query("api_key") apiKey: String = PARAM_API_KEY) : Observable<CastsByMovieResponse>
+
+    @GET("$MOVIE_DETAIL/{MOVIE_ID}/videos")
+    fun getTrailersByMovie(
+        @Path("MOVIE_ID") movieID: Int,
+        @Query("api_key") apiKey: String = PARAM_API_KEY
+    ): Observable<TrailersByMovieResponse>
 
 }

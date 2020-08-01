@@ -3,10 +3,7 @@ package com.example.ktmmoe.themovieapp.data.models.impls
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.ktmmoe.themovieapp.data.models.MovieModel
-import com.example.ktmmoe.themovieapp.data.vos.CastVO
-import com.example.ktmmoe.themovieapp.data.vos.GenreVO
-import com.example.ktmmoe.themovieapp.data.vos.MovieDetailVO
-import com.example.ktmmoe.themovieapp.data.vos.MovieVO
+import com.example.ktmmoe.themovieapp.data.vos.*
 
 /**
  * Created by ktmmoe on 31, July, 2020
@@ -14,6 +11,13 @@ import com.example.ktmmoe.themovieapp.data.vos.MovieVO
 object MockMovieModelImpl: MovieModel {
     override val movieDetail : MutableLiveData<MovieDetailVO> = MutableLiveData(MovieDetailVO())
     override val moviesByGenre: MutableLiveData<List<MovieVO>> = MutableLiveData(listOf())
+    override val trailerByMovie: MutableLiveData<TrailerVO> = MutableLiveData(TrailerVO())
+
+    override fun getSliderMovies(onError: (String) -> Unit): LiveData<List<MovieVO>> {
+        val liveData = MutableLiveData<List<MovieVO>> ()
+        liveData.postValue(listOf(MovieVO(popular = true), MovieVO(popular = true), MovieVO(popular = true)))
+        return liveData
+    }
 
     override fun getPopularMovies(onError: (String) -> Unit): LiveData<List<MovieVO>> {
         val liveData = MutableLiveData<List<MovieVO>> ()
@@ -39,6 +43,10 @@ object MockMovieModelImpl: MovieModel {
 
     override fun getMoviesByGenre(genreId: Int, onError: (String) -> Unit) {
         moviesByGenre.postValue(listOf(MovieVO(), MovieVO(), MovieVO()))
+    }
+
+    override fun getTrailersByMovie(movieId: Int, onError: (String) -> Unit) {
+
     }
 
     override fun getAllDataFromApiAndSaveToDatabase(

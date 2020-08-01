@@ -1,5 +1,6 @@
 package com.example.ktmmoe.themovieapp.adapters
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
@@ -18,6 +19,10 @@ class MovieByGenrePagerAdapter(fm: FragmentManager, private val genres: List<Gen
 
     override fun getCount(): Int {
         return genres.count()
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return genres[position].name
     }
 
 }

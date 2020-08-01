@@ -27,6 +27,7 @@ class CastViewHolder(itemView: View, delegate: CastDelegate) : BaseViewHolder<Ca
             .load(data.actualProfilePath())
             .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background).error(R.drawable.ic_launcher_background).centerCrop())
             .into(mIvPerson)
+        itemView.ivPersonFavourite.setImageResource(data.favouriteDrawable())
         itemView.tvPersonName.text = data.name
     }
 }

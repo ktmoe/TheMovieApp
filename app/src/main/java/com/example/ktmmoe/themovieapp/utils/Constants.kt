@@ -9,6 +9,7 @@ const val POPULAR_MOVIE = "movie/popular"
 const val MOVIE_DETAIL = "movie"
 const val MOVIE_GENRES = "genre/movie/list"
 const val MOVIE_CASTS = "movie/547016/casts"
+const val NOW_PLAYING_MOVIES = "movie/now_playing"
 const val MOVIE_BY_GENRE = "discover/movie"
 
 const val EM_NO_INTERNET_CONNECTION = "No Internet Connection"

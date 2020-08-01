@@ -53,6 +53,7 @@ class MovieBackDropInfoViewPod @JvmOverloads constructor(
 
     private fun bindGenreChips() {
         val genres = mData?.genres?.map { it.name } ?: emptyList()
+        chipGroup.removeAllViews()
         for (index in genres.indices) {
             val chip = Chip(chipGroup.context)
             chip.text= genres[index]

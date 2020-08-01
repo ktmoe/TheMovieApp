@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_movie_by_genre.*
 /**
  * Created by ktmmoe on 29, July, 2020
  **/
-class MovieByGenreFragment : Fragment(), MovieByGenreView {
+class MovieByGenreFragment : BaseFragment(), MovieByGenreView {
     private lateinit var mMovieRecyclerAdapter: MovieRecyclerAdapter
     private var genreId : Int? = null
 
@@ -55,7 +55,7 @@ class MovieByGenreFragment : Fragment(), MovieByGenreView {
     companion object {
         private const val GENRE_ID = "genre-id"
         fun newInstance(id: Int) : MovieByGenreFragment {
-            val bundle: Bundle = Bundle()
+            val bundle = Bundle()
             bundle.putInt(GENRE_ID, id)
            val fragment = MovieByGenreFragment()
             fragment.arguments = bundle
