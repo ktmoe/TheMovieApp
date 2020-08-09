@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">The Movie App</string>
+    <string name="my_app_name_dev">The Movie App Dev</string>
+    <string name="my_app_name_prod">The Movie App Prod</string>
+    <string name="my_app_name_staging">The Movie App Staging</string>
     <string name="discover">Discover</string>
     <string name="check_movie_nshowtimes">Check Movie\nShow times</string>
     <string name="u_see_more_u"><u>See More</u></string>

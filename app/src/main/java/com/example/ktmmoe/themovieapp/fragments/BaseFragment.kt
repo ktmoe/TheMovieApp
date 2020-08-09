@@ -4,8 +4,8 @@ import android.app.Dialog
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import com.example.ktmmoe.shared.mvp.views.BaseView
 import com.example.ktmmoe.themovieapp.R
-import com.example.ktmmoe.themovieapp.mvp.views.BaseView
 
 /**
  * Created by ktmmoe on 01, August, 2020

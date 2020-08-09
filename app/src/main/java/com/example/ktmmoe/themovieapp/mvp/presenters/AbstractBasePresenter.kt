@@ -1,7 +1,8 @@
 package com.example.ktmmoe.themovieapp.mvp.presenters
 
 import androidx.lifecycle.ViewModel
-import com.example.ktmmoe.themovieapp.mvp.views.BaseView
+import com.example.ktmmoe.shared.mvp.presenters.BasePresenter
+import com.example.ktmmoe.shared.mvp.views.BaseView
 
 /**
  * Created by ktmmoe on 25, July, 2020

@@ -1,5 +1,6 @@
 package com.example.ktmmoe.themovieapp.mvp.views
 
+import com.example.ktmmoe.shared.mvp.views.BaseView
 import com.example.ktmmoe.themovieapp.data.vos.MovieVO
 import com.example.ktmmoe.themovieapp.views.viewholders.MovieViewHolder
 

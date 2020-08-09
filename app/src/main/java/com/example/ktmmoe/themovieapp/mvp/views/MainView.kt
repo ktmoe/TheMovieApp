@@ -1,5 +1,6 @@
 package com.example.ktmmoe.themovieapp.mvp.views
 
+import com.example.ktmmoe.shared.mvp.views.BaseView
 import com.example.ktmmoe.themovieapp.data.vos.CastVO
 import com.example.ktmmoe.themovieapp.data.vos.GenreVO
 import com.example.ktmmoe.themovieapp.data.vos.MovieVO
@@ -10,7 +11,7 @@ import com.example.ktmmoe.themovieapp.views.viewholders.MovieViewHolder
 /**
  * Created by ktmmoe on 29, July, 2020
  **/
-interface MainView: BaseView{
+interface MainView: BaseView {
     fun displayTop5(list: MutableList<MovieVO>)
     fun displayMoviesList(list: MutableList<MovieVO>)
     fun displayGenresList (list: MutableList<GenreVO>)

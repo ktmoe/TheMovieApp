@@ -1,6 +1,7 @@
 package com.example.ktmmoe.themovieapp.mvp.views
 
 import android.content.Context
+import com.example.ktmmoe.shared.mvp.views.BaseView
 import com.example.ktmmoe.themovieapp.data.vos.MovieDetailVO
 import com.example.ktmmoe.themovieapp.delegates.CastDelegate
 import com.example.ktmmoe.themovieapp.delegates.CrewDelegate

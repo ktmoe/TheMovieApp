@@ -2,6 +2,7 @@ package com.example.ktmmoe.themovieapp.activities
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
+import com.example.ktmmoe.themovieapp.BuildConfig
 import com.example.ktmmoe.themovieapp.R
 import com.example.ktmmoe.themovieapp.adapters.*
 import com.example.ktmmoe.themovieapp.data.vos.CastVO

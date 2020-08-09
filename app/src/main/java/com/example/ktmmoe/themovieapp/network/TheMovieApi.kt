@@ -1,5 +1,6 @@
 package com.example.ktmmoe.themovieapp.network
 
+import com.example.ktmmoe.themovieapp.BuildConfig
 import com.example.ktmmoe.themovieapp.data.vos.MovieDetailVO
 import com.example.ktmmoe.themovieapp.network.responses.*
 import com.example.ktmmoe.themovieapp.utils.*
@@ -14,31 +15,31 @@ import retrofit2.http.Query
 interface TheMovieApi {
 
     @GET(POPULAR_MOVIE)
-    fun getPopularMovies(@Query("api_key") apiKey: String = PARAM_API_KEY) : Observable<PopularMoviesResponse>
+    fun getPopularMovies(@Query("api_key") apiKey: String = BuildConfig.API_KEY) : Observable<PopularMoviesResponse>
 
     @GET("$MOVIE_DETAIL/{MOVIE_ID}")
     fun getMovieDetail(
         @Path("MOVIE_ID") movieID: Int,
-        @Query("api_key") apiKey: String = PARAM_API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("append_to_response") appendToResponse: String = "credits"
     ): Observable<MovieDetailVO>
 
     @GET(MOVIE_GENRES)
-    fun getMovieGenres(@Query("api_key") apiKey: String = PARAM_API_KEY): Observable<GenresResponse>
+    fun getMovieGenres(@Query("api_key") apiKey: String = BuildConfig.API_KEY): Observable<GenresResponse>
 
     @GET(MOVIE_BY_GENRE)
     fun getMoviesByGenre(
-        @Query("api_key") apiKey: String = PARAM_API_KEY,
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY,
         @Query("with_genres") genreId: Int
     ): Observable<MoviesByGenreResponse>
 
     @GET(MOVIE_CASTS)
-    fun getBestActors(@Query("api_key") apiKey: String = PARAM_API_KEY) : Observable<CastsByMovieResponse>
+    fun getBestActors(@Query("api_key") apiKey: String = BuildConfig.API_KEY) : Observable<CastsByMovieResponse>
 
     @GET("$MOVIE_DETAIL/{MOVIE_ID}/videos")
     fun getTrailersByMovie(
         @Path("MOVIE_ID") movieID: Int,
-        @Query("api_key") apiKey: String = PARAM_API_KEY
+        @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Observable<TrailersByMovieResponse>
 
 }

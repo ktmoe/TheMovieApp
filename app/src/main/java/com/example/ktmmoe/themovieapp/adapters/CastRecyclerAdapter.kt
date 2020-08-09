@@ -2,6 +2,7 @@ package com.example.ktmmoe.themovieapp.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.example.ktmmoe.shared.adapters.BaseRecyclerAdapter
 import com.example.ktmmoe.themovieapp.R
 import com.example.ktmmoe.themovieapp.data.vos.CastVO
 import com.example.ktmmoe.themovieapp.delegates.CastDelegate

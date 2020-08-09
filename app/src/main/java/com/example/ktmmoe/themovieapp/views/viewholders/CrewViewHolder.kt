@@ -4,6 +4,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.ktmmoe.shared.views.viewholders.BaseViewHolder
 import com.example.ktmmoe.themovieapp.R
 import com.example.ktmmoe.themovieapp.data.vos.CrewVO
 import com.example.ktmmoe.themovieapp.delegates.CrewDelegate

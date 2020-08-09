@@ -1,6 +1,7 @@
 package com.example.ktmmoe.themovieapp.mvp.presenters
 
 import androidx.lifecycle.LifecycleOwner
+import com.example.ktmmoe.shared.mvp.presenters.BasePresenter
 import com.example.ktmmoe.themovieapp.delegates.CastDelegate
 import com.example.ktmmoe.themovieapp.delegates.CrewDelegate
 import com.example.ktmmoe.themovieapp.mvp.views.MainView

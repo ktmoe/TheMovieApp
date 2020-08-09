@@ -1,4 +1,4 @@
-package com.example.ktmmoe.themovieapp.views.viewholders
+package com.example.ktmmoe.shared.views.viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

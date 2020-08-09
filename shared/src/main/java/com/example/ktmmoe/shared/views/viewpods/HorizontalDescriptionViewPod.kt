@@ -1,4 +1,4 @@
-package com.example.ktmmoe.themovieapp.views.viewpods
+package com.example.ktmmoe.shared.views.viewpods
 
 import android.content.Context
 import android.util.AttributeSet

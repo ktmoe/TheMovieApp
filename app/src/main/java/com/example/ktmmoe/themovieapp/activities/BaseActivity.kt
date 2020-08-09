@@ -1,13 +1,12 @@
 package com.example.ktmmoe.themovieapp.activities
 
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
+import com.example.ktmmoe.shared.mvp.views.BaseView
 import com.example.ktmmoe.themovieapp.R
-import com.example.ktmmoe.themovieapp.mvp.views.BaseView
 import com.google.android.material.snackbar.Snackbar
 
 /**

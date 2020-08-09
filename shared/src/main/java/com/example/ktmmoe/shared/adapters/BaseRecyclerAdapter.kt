@@ -1,7 +1,7 @@
-package com.example.ktmmoe.themovieapp.adapters
+package com.example.ktmmoe.shared.adapters
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ktmmoe.themovieapp.views.viewholders.BaseViewHolder
+import com.example.ktmmoe.shared.views.viewholders.BaseViewHolder
 
 /**
  * Created by ktmmoe on 25, July, 2020

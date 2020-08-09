@@ -1,4 +1,4 @@
-package com.example.ktmmoe.themovieapp.mvp.views
+package com.example.ktmmoe.shared.mvp.views
 
 import androidx.lifecycle.LifecycleOwner
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.ktmmoe.shared.views.viewpods.HorizontalDescriptionViewPod
 import com.example.ktmmoe.themovieapp.R
 import com.example.ktmmoe.themovieapp.adapters.CastRecyclerAdapter
 import com.example.ktmmoe.themovieapp.adapters.CrewRecyclerAdapter
@@ -13,7 +14,6 @@ import com.example.ktmmoe.themovieapp.data.vos.MovieDetailVO
 import com.example.ktmmoe.themovieapp.mvp.presenters.MovieDetailPresenter
 import com.example.ktmmoe.themovieapp.mvp.presenters.impls.MovieDetailPresenterImpl
 import com.example.ktmmoe.themovieapp.mvp.views.MovieDetailView
-import com.example.ktmmoe.themovieapp.views.viewpods.HorizontalDescriptionViewPod
 import com.example.ktmmoe.themovieapp.views.viewpods.MovieBackDropInfoViewPod
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 import kotlinx.android.synthetic.main.backdrop_movie_detail.*
